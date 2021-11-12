@@ -1,0 +1,11 @@
+.selection-item{
+    width: 20%;
+    margin:0 auto;
+    float:left;
+    text-align: center;
+    font-size: 12px;
+}
+.selection-item img{
+    width: 30px;
+    height: 30px;
+}

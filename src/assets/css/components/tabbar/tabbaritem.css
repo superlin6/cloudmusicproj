@@ -1,0 +1,15 @@
+.tab-bar-item{
+    width: 25%;
+    height: 100%;
+    margin:0 auto;
+    float:left;
+    text-align: center;
+    font-size: 14px;
+}
+
+.tab-bar-item img{
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-top: 3px;
+}

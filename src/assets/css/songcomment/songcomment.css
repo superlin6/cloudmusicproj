@@ -1,0 +1,89 @@
+.song-comment{
+    background-color: #f6f6f6;
+    height: 100%;
+}
+.song{
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+}
+.song img{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    padding: 5px 5px;
+    background-color: #0a0a0a;
+}
+.song .name{
+    margin-left: 6px;
+    font-size: 14px;
+}
+.song .author{
+    font-size: 12px;
+    color: #8c939d;
+}
+.comment{
+    padding: 10px 16px;
+    margin-top:10px;
+    background-color: #fff;
+}
+.comment .title{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+.comment-item{
+    padding: 6px 0;
+    position: relative;
+}
+.comment-item .img{
+    display: flex;
+    font-size: 14px;
+    color:#8c939d;
+    position: relative;
+}
+
+.comment-item .img img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.comment-item .img .commenter{
+    margin-left: 6px;
+    font-size: 14px;
+}
+.comment-item .img .commenter .time{
+    font-size: 12px;
+    color: #8c939d;
+}
+.comment-item .like{
+    position:absolute;
+    right: 16px;
+    top: 8px;
+    display: flex;
+}
+.comment-item .like img{
+    width: 14px;
+    height: 14px;
+}
+.comment-item .like .count{
+    font-size: 12px;
+    color: #80868e;
+    margin-left: 2px;
+    font-weight: normal;
+}
+.comment-item .item-content{
+    margin-left: 38px;
+    margin-top:6px;
+    font-size: 14px;
+}
+.bottom .content{
+    text-align: center;
+    font-size: 14px;
+}

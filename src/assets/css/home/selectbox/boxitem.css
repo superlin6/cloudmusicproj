@@ -1,0 +1,12 @@
+.box-item{
+    width: 25%;
+    margin:0 auto;
+    text-align: center;
+    margin:5px 0;
+    font-size:12px;
+    color: #90918f;
+}
+.box-item img{
+    width: 30px;
+    height: 30px;
+}

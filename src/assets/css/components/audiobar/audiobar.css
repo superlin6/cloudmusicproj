@@ -1,0 +1,142 @@
+.clearfix:before,.clearfix:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+.sum-audio-bar{
+    height: 100%;
+    width: 100%;
+
+}
+.view{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top:0;
+    z-index: 400;
+}
+
+.audio-bar{
+    max-width: 750px;
+    position: fixed;
+    bottom:16px;
+    width: 100%;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+}
+.audio-bar .content{
+    width: 80%;
+    height: 20px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 14px;
+    box-shadow: 0 0 4px #4d4e50;
+    position: relative;
+    background-color: rgba(255,255,255,.86);
+}
+
+.audio-bar .content .cd,
+.audio-bar .content .audio-option,
+.audio-bar .content .audio-play{
+    display: flex;
+    margin-left: 20px;
+}
+.audio-bar .content .song-name{
+    margin-left: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    width:52%;
+    overflow:hidden;
+}
+
+.audio-bar .content .audio-option{
+    position:absolute;
+    right: 20px;
+}
+.audio-bar .content .audio-play{
+    position:absolute;
+    right:50px ;
+}
+.audio-bar .content .cd img{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    position: relative;
+    top:-4px;
+    padding: 5px 5px;
+    background-color: #0a0a0a;
+    box-shadow:0 0 4px #4a4a4a;
+    opacity: .8;
+}
+.rotate_play{
+    animation: rotate 20s linear infinite;
+}
+@keyframes rotate {
+    0%{
+        transform:rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.rotate_pause{
+    animation-play-state: paused;
+}
+
+.audio-bar .content .audio-option img
+{
+    width: 16px;
+    height: 16px;
+}
+.audio-bar .content .audio-play img{
+    width: 22px;
+    height: 22px;
+}
+.van-popup{
+    padding: 12px 12px;
+    margin:18px 18px;
+    /*padding右边溢出了 所以设置box-sizing为border-box*/
+    box-sizing: border-box;
+    box-shadow: 0 0 1px #8c939d;
+    border-radius: 14px;
+}
+.van-popup .title{
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+.van-popup .title .num{
+    font-weight: normal;
+    font-size: 12px;
+    color: #8c939d;
+}
+.van-popup .list{
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+}
+.van-popup .list .msg{
+    white-space: nowrap;
+    width: calc(100% - 20px);
+    overflow: hidden;
+    float: left;
+
+}
+.van-popup .list .author{
+    font-size: 12px;
+    color: #8c939d;
+}
+.van-popup .list .del{
+    float: right;
+    width: 20px;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.van-popup .list .del img{
+    width: 18px;
+    height: 18px;
+}

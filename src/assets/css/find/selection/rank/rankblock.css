@@ -1,0 +1,19 @@
+.rank-block{
+    display: flex;
+    margin:0 20px;
+    flex-wrap: wrap;
+}
+.rank-block .rank-item{
+    flex-basis: 33.333%;
+    text-align: center;
+    padding-bottom: 16px;
+}
+.rank-block .rank-item img{
+    width: 100px;
+    height: 100px;
+    border-radius: 14px;
+}
+.rank-block .rank-item .font{
+    font-size: 12px;
+    text-align: center;
+}

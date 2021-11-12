@@ -1,0 +1,29 @@
+.topbar-item{
+    width: 40px;
+    height: 100%;
+    text-align: center;
+    line-height: 40px;
+}
+
+.topbar-item img{
+    width: 16px;
+    height: 16px;
+}
+
+.van-cell{
+    padding:0 9px;
+    border-radius: 18px;
+    box-shadow: 0 0 6px #dddedc;
+    text-align: center;
+}
+.center{
+    width: calc(100% - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.center div{
+    display: flex;
+    justify-content: center;
+    width: 94%;
+}

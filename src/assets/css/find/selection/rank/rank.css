@@ -1,0 +1,44 @@
+.clearfix:before,.clearfix:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+.rank{
+    background-color: #f6f6f6;
+    height: 100%;
+    margin-top:70px;
+}
+.top-nav{
+    font-size: 14px;
+    color:#4a4a4a;
+    background-color: #ffffff;
+    width: 100%;
+    position: absolute;
+    top: 40px;
+    z-index: 2;
+    box-shadow:0 1px 1px #f1f1f1;
+}
+.top-nav ul{
+    display: flex;
+    height: 30px;
+    line-height: 30px;
+}
+.top-nav ul li{
+    margin:3px auto;
+}
+.selected{
+    /*被选中后显示下划线*/
+    /*text-decoration: #ff8917 solid underline;*/
+    font-weight: bold;
+    border-bottom: solid #6e9cff;
+}
+
+.title{
+    margin:16px 30px 8px;
+    font-weight: bold;
+}
+.official,.other{
+    background-color: #fff;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}

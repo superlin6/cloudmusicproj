@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.home{
+    overflow: hidden;
+    background-color: #f6f6f6;
+    margin-top:40px;
+    width: 100%;
+    height: 100%;
+}
+.content{
+    height: 1350px;
+}
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav .line{
+    height: 12px;
+    border-right:1px solid #d4d5d3;
+}
+.nav-item{
+    padding: 10px 20px;
+    font-size: 15px;
+}
+
+.nav-item a{
+    display: inline-block;
+    color: #ababab;
+    text-decoration: none;
+    padding: 2px 2px;
+}
+.nav-item a:hover{
+    background-color: #bebebe;
+    border-radius: 20px;
+    color: white;
+}

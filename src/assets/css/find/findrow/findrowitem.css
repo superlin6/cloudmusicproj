@@ -1,0 +1,37 @@
+.find-row-item{
+    font-size: 12px;
+    text-align: center;
+}
+.find-row-item .item-img{
+    margin:4px 6px;
+    position: relative;
+}
+.find-row-item .item-img img{
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    box-shadow: 0 0 2px #d4d5d3;
+    border-radius: 14px;
+
+}
+.find-row-item .item-img .playCount{
+    position:absolute;
+    top:5px;
+    right:4px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color:#fff;
+    background-color: rgba(113, 113, 113, 0.4);
+    padding:1px 6px 1px 2px;
+    border-radius: 8px;
+}
+.find-row-item .item-img .playCount img{
+    width: 14px;
+    height: 14px;
+    box-shadow: none;
+}
+
+.find-row-item .item-text{
+    padding: 0 4px;
+}

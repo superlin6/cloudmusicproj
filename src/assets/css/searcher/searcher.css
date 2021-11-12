@@ -1,0 +1,43 @@
+.searcher {
+    height: 100%;
+}
+
+.hot-search {
+    margin-top: 40px;
+}
+.history .history-title{
+    margin:0 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.history .history-title, .hot .hot-title {
+    font-size: 14px;
+}
+.history .history-title .clearbtn{
+    font-weight: normal;
+    font-size: 12px;
+    height: 100%;
+    line-height: 19.4px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+.history .history-block{
+    padding: 6px 0;
+    margin:0 20px;
+}
+
+.hot .hot-title{
+    font-weight: bold;
+    margin:0 20px;
+}
+.hot .hot-block{
+    margin:0 20px;
+}
+.btn {
+    height: 24px;
+    border-radius: 10px;
+    color: #4a4a4a !important;
+    font-size: 12px;
+    margin-right: 4px;
+}

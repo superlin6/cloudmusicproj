@@ -1,0 +1,15 @@
+
+.find-row-wrapper{
+    display: flex;
+    padding: 5px 10px;
+    /*width: 100%;*/
+    justify-content: space-around;
+}
+
+.title{
+    font-weight: bold;
+    margin:6px 20px;
+}
+.selected-audio{
+    padding-bottom: 150px;
+}

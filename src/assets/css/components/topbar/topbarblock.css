@@ -1,0 +1,8 @@
+.topbar-block{
+    height: 40px;
+    display: flex;
+    padding: 0 4px;
+    justify-content: space-between;
+    /*box-shadow: 0 1px 3px #ebecea;*/
+    /*background-color: #f6f6f6;*/
+}

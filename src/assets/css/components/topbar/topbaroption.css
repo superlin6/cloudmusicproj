@@ -1,0 +1,52 @@
+.top-bar-option{
+    /*color: white;*/
+    height: 100%;
+}
+.content{
+    text-align: left;
+    line-height: 12px;
+}
+.font{
+    font-size: 14px;
+    line-height: 32px;
+    height: 32px;
+}
+
+.title{
+    margin: 6px 0 6px;
+}
+.block_vip,.block_1,.block_2,.block_3,.block_4{
+    margin: 15px 10px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    
+}
+.block_vip{
+    background-color: #a7a7a7;
+    color:#ffffff;
+    height: 60px;
+    font-weight: bold;
+
+}
+.block_vip .font{
+    font-weight: normal;
+    font-size: 12px;
+    margin-top:20px;
+}
+
+.block_2 .title,.block_3 .title{
+    font-size: 12px;
+    color: #a7a8a6;
+    margin:0 0 6px;
+}
+.block_5{
+    text-align: center;
+    padding-bottom: 20px;
+}
+.block_5 .van-button{
+    border-radius: 14px;
+    width: calc(100% - 20px);
+    color: #ff5d69;
+    font-weight: bold;
+}

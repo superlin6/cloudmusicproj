@@ -1,0 +1,36 @@
+.clearfix:before,.clearfix:after{
+    content:'';
+    display: table;
+    clear: both;
+}
+.song-view{
+    height: 100%;
+    width: 100%;
+    background:linear-gradient(
+            /*rgba(255,255,255,.7),*/
+            /*rgba(255,255,255,.6),*/
+            /*rgba(255,255,255,1)*/
+            rgb(218, 233, 248),
+            rgb(194, 213, 234),
+            rgb(218, 233, 248)
+    );
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 4px;
+}
+.top .img,.top .share{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img{
+    width: 18px;
+    height: 18px;
+}
+

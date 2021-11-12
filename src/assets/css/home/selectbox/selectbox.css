@@ -1,0 +1,14 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.selectBox{
+  /*  解决两个div垂直外边距重叠*/
+  overflow: auto;
+}
+.clearfix::before,
+.clearfix::after{
+    content:'';
+    display: table;
+    clear: both;
+}
