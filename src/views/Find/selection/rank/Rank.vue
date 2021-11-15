@@ -53,7 +53,7 @@
                 request({
                     url: '/toplist/detail'
                 }).then(res => {
-                    // console.log(res);
+                    console.log(res);
                     let tmpRowData = res.list.filter((item, index) => index <= 3) //前面4个都是官方榜的内容
                     tmpRowData.forEach(item => {
                         let tmpData = {};
@@ -79,30 +79,34 @@
                             tmpData.id = item.id;//歌单id
                             tmpData.imgUrl = item.coverImgUrl;//歌单图片
                             tmpData.title = item.name;//歌单标题
-                            if (i == 0) {//精选榜只放入黑胶vip榜一个
-                                tmpDataArray.push(tmpData);
-                                // console.log('zd0');
-                                return false;
-                            } else if (i == 1) {//曲风榜
-                                if (index > 0 && index <= 6) {
+                            if (i == 0) {//精选榜
+                                if(index == 0 || index == 25){
                                     tmpDataArray.push(tmpData);
-                                    if (index == 6) {
+                                    if(index == 25) return false;
+                                    else return true
+                                }
+                                // console.log('zd0');
+                                
+                            } else if (i == 1) {//曲风榜
+                                if (index > 0 && index <= 6 || index >= 15 && index <= 23 && index != 18 && index != 19 && index != 22) {
+                                    tmpDataArray.push(tmpData);
+                                    if (index == 23) {
                                         // console.log('zd1');
                                         return false;
                                     } else return true;
                                 }
                             } else if (i == 2) {//全球榜
-                                if (index > 6 && index <= 14 && index != 9 && index != 10) {
+                                if (index > 6 && index <= 14 && index != 9 && index != 10 || index == 19) {
                                     tmpDataArray.push(tmpData);
-                                    if (index == 14) {
+                                    if (index == 19) {
                                         // console.log('zd2');
                                         return false;
                                     } else return true;
                                 }
                             } else if (i == 3) {//特色榜
-                                if (index > 14 && index <= 17) {
+                                if (index == 9 || index == 10 || index == 18 || index == 22 || index == 24) {
                                     tmpDataArray.push(tmpData);
-                                    if (index == 17) {
+                                    if (index == 24) {
                                         // console.log('zd3');
                                         return false;
                                     } else return true;
@@ -121,7 +125,7 @@
                 //滚动到对应区域
                 // console.log(index);
                 // this.selected = index;//切换选中的title
-                this.$refs.scroll.scrollToElement(('.title' + index), 100, false, -150);//元素名称 延时 x轴偏移 y轴偏移
+                this.$refs.scroll.scrollToElement(('.title' + index), 100, false, 0);//元素名称 延时 x轴偏移 y轴偏移
             },
             // scroll(pos){
             //     //滚动事件
@@ -131,7 +135,7 @@
             // },
             scrollHandler:throttle(function(pos){
                 console.log(this.$refs.title)
-                let baseTop = 180;
+                let baseTop = 120;
                 if (pos.y <= 0 && pos.y > -this.$refs.title[0].offsetTop + baseTop && this.selected != 0) this.selected = 0;
                 else if (pos.y <= -this.$refs.title[0].offsetTop + baseTop && pos.y > -this.$refs.title[1].offsetTop + baseTop && this.selected != 1) this.selected = 1;
                 else if (pos.y <= -this.$refs.title[1].offsetTop + baseTop && pos.y > -this.$refs.title[2].offsetTop + baseTop && this.selected != 2) this.selected = 2;
