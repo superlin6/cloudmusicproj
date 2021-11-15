@@ -20,15 +20,15 @@ export default {
     //     this.verScroll();
     // // console.log("scroll:" + this.num);
     // });
-    // 完美解决 但是触发次数非常多，需要做计数器的处理 已做
+    console.log('created')
+  },
+  mounted(){
+        // 完美解决 但是触发次数非常多，需要做计数器的处理 已做
     this.$bus.on('verScroll',() => {
         // console.log('bus');
-        this.$nextTick(()=>{
-            this.verScroll();
-        })
+        this.verScroll();
     })
   },
-
   methods: {
     verScroll() {
         //default[0]找到slot里面的div也就是find-row-wrapper，再.elm.childNodes获取里面的item
@@ -37,6 +37,7 @@ export default {
         let width = this.num * itemWidth;
         // console.log(width);
         this.$refs.content.style.width = width + "px";
+        // console.log(this.$refs.content)
         if (!this.scroll) {
           this.scroll = new BScroll(this.$refs.wrapper, {
             startX: 0,
@@ -47,7 +48,7 @@ export default {
             eventPassthrough: "vertical",
           });
         } else {
-          console.log(this.scroll);
+          // console.log(this.scroll);
           this.scroll.refresh();
         }
     }

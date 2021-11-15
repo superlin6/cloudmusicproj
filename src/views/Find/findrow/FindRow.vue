@@ -128,7 +128,6 @@ export default {
             // 每次取6个数据 使得可以水平滑动
             let number = 0;
             //遍历次数length
-            // let length = res.recommend.length % 6 == 0 ? parseInt(res.recommend.length / 6) : parseInt(res.recommend.length / 6) + 1;
             let length = parseInt(res.recommend.length / 6); //考虑美观，后面余数歌单不取
             // console.log('length=' + length);
             for (let i = 0; i < length; i++) {
@@ -158,17 +157,18 @@ export default {
     verScroll() {
       this.loadCount++;
       // console.log(this.loadCount);
-      if (this.loadCount >= 6) this.$bus.emit("verScroll");
+      if (this.loadCount >= 6) {
+          this.$bus.emit("verScroll");
+          this.$bus.off('verScroll');//已经刷新过了 就不要了 暂时解决方案 登录后未验证
+      }
     },
   },
   updated() {
     this.$emit("finish"); //刷新scroll
   },
   activated() {
-    if (window.localStorage.getItem("userId")) {
-      this.InitData();
-      this.getData();
-    }
+    this.InitData();
+    this.getData();
   },
   filters: {
     playCount(val) {
