@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="login clearfix">
         <div class="icon">
             <img src="@/static/img/login/login.jpg">
@@ -32,7 +32,7 @@
                         password: this.password
                     }
                 }).then(res => {
-                        // console.log(res);
+                        console.log(res);
                         if (res.code == 501 || res.code == 502 || res.code == 509) {
                             Dialog.alert({
                                 message: res.msg,
@@ -43,9 +43,6 @@
                             Dialog.alert({
                                 message: '登录成功',
                             }).then(() => {
-                                request({
-                                    url:'/login/refresh'
-                            }),
                                 window.localStorage.setItem('userId', res.account.id);//用户
                                 this.$router.push({name: 'Home'});
                                 // console.log('router'+this.$router.options.routes)

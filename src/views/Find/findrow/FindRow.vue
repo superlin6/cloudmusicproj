@@ -88,8 +88,12 @@ export default {
       comData: "",
       comData2: "",
       comData3: "",
-      loadCount:0
+      loadCount: 0,
     };
+  },
+  created(){
+    this.InitData();
+    this.getData();
   },
   methods: {
     InitData() {
@@ -143,27 +147,28 @@ export default {
       }).then((res) => {
         // console.log(res);
         // this.comData3 = res.playlists;
-        res.playlists.forEach(item => {
+        res.playlists.forEach((item) => {
           this.comData3.push(item);
-        })
+        });
       });
     },
     toItemList(id) {
       this.$router.push({ name: "FindRowItemList", query: { id } });
     },
-    verScroll(){
+    verScroll() {
       this.loadCount++;
       // console.log(this.loadCount);
-      if(this.loadCount>=6)
-        this.$bus.emit('verScroll');
-    }
+      if (this.loadCount >= 6) this.$bus.emit("verScroll");
+    },
   },
   updated() {
     this.$emit("finish"); //刷新scroll
   },
   activated() {
-    this.InitData();
-    this.getData();
+    if (window.localStorage.getItem("userId")) {
+      this.InitData();
+      this.getData();
+    }
   },
   filters: {
     playCount(val) {

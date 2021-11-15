@@ -53,7 +53,7 @@
                 request({
                     url: '/toplist/detail'
                 }).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     let tmpRowData = res.list.filter((item, index) => index <= 3) //前面4个都是官方榜的内容
                     tmpRowData.forEach(item => {
                         let tmpData = {};
@@ -134,8 +134,8 @@
                 
             // },
             scrollHandler:throttle(function(pos){
-                console.log(this.$refs.title)
-                let baseTop = 120;
+                // console.log(this.$refs.title)
+                let baseTop = 120;//偏移量
                 if (pos.y <= 0 && pos.y > -this.$refs.title[0].offsetTop + baseTop && this.selected != 0) this.selected = 0;
                 else if (pos.y <= -this.$refs.title[0].offsetTop + baseTop && pos.y > -this.$refs.title[1].offsetTop + baseTop && this.selected != 1) this.selected = 1;
                 else if (pos.y <= -this.$refs.title[1].offsetTop + baseTop && pos.y > -this.$refs.title[2].offsetTop + baseTop && this.selected != 2) this.selected = 2;
