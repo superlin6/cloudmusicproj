@@ -11,16 +11,17 @@
         </div>
         <scroll ref="scroll"
                 :listenScroll="true"
-                @scroll="scroll">
+                @scroll="scrollHandler">
             <div class="official clearfix">
                 <div class="title title0">{{titles[0]}}榜</div>
                 <!-- 这里需要对官方榜每个行组件传入对应index的数据 -->
                 <rank-row v-for="(item,index) in rowData.length"
                           :style="{backgroundColor:index%2==0?(index%4==0?'#fae5ff':'#ffe7cb'):(index%3==0?'#e6efff':'#deffd5')}"
-                          :rowData="rowData[index]"></rank-row>
+                          :rowData="rowData[index]"
+                          :key="index"></rank-row>
             </div>
-            <div class="other clearfix" v-for="(item,i) in titles.filter((item,index)=>index!=0)">
-                <div :class="{'title':true,['title'+(i+1)]:true}">{{item}}榜</div>
+            <div class="other clearfix" v-for="(item,i) in titles.filter((item,index)=>index!=0)" :key="i">
+                <div ref="title" :class="{'title':true,['title'+(i+1)]:true}">{{item}}榜</div>
                 <!-- 这里的block指的是除了标题的整个大block,blockData -->
                 <rank-block :blockData="blockData[i]"></rank-block>
             </div>
@@ -33,6 +34,7 @@
     import RankRow from "./RankRow";
     import RankBlock from "./RankBlock";
     import {request} from "network/request";
+    import throttle from "../../../../uitls/throttle";
 
     export default {
         name: "Rank",
@@ -43,6 +45,7 @@
                 selected: 0,//表示选中的title
                 rowData: [],//id,imgUrl,title,msg
                 blockData: [],//id,imgUrl,title
+                titleOffsetTop:[],//每个标题到顶部的距离
             }
         },
         methods: {
@@ -117,19 +120,24 @@
             scrollTo(index) {
                 //滚动到对应区域
                 // console.log(index);
-                this.selected = index;//切换选中的title
-                this.$refs.scroll.scrollToElement(('.title' + index), 200, false, -24);
+                // this.selected = index;//切换选中的title
+                this.$refs.scroll.scrollToElement(('.title' + index), 100, false, -150);//元素名称 延时 x轴偏移 y轴偏移
             },
-            scroll(pos) {
-                //滚动事件
-                //这里考虑到滚动时会有多次赋值，需要优化 加上&限制触发条件 缺点是跨度切换会感觉有跳转卡顿
-                // console.log('触发滚动事件' + pos.y)
-                if (pos.y <= 0 && pos.y > -534 && this.selected != 0) this.selected = 0;
-                else if (pos.y <= -534 && pos.y > -722 && this.selected != 1) this.selected = 1;
-                else if (pos.y <= -722 && pos.y > -1047 && this.selected != 2) this.selected = 2;
-                else if (pos.y <= -1047 && pos.y > -1071 && this.selected != 3) this.selected = 3;
-                else if (pos.y <= -1071) this.selected = 4
-            },
+            // scroll(pos){
+            //     //滚动事件
+            //     //这里考虑到滚动时会有多次赋值，需要优化 加上&限制触发条件 缺点是跨度切换会感觉有跳转卡顿
+            //     // console.log('触发滚动事件' + pos.y)
+                
+            // },
+            scrollHandler:throttle(function(pos){
+                console.log(this.$refs.title)
+                let baseTop = 180;
+                if (pos.y <= 0 && pos.y > -this.$refs.title[0].offsetTop + baseTop && this.selected != 0) this.selected = 0;
+                else if (pos.y <= -this.$refs.title[0].offsetTop + baseTop && pos.y > -this.$refs.title[1].offsetTop + baseTop && this.selected != 1) this.selected = 1;
+                else if (pos.y <= -this.$refs.title[1].offsetTop + baseTop && pos.y > -this.$refs.title[2].offsetTop + baseTop && this.selected != 2) this.selected = 2;
+                else if (pos.y <= -this.$refs.title[2].offsetTop + baseTop && pos.y > -this.$refs.title[3].offsetTop + baseTop && this.selected != 3) this.selected = 3;
+                else if (pos.y <= -this.$refs.title[3].offsetTop + baseTop) this.selected = 4
+            },60)
         },
         created() {
             this.getMsg();

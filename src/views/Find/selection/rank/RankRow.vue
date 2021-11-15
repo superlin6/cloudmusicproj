@@ -7,7 +7,7 @@
             </div>
             <div class="font">
                 <div class="describe">
-                    <div class="des" v-for="(item,index) in rowData.msg">
+                    <div class="des" v-for="(item,index) in rowData.msg" :key="index">
                         <span class="name">{{index+1}}.{{item.first}}</span>
                         <span class="author">&nbsp;-&nbsp;{{item.second}}</span>
                     </div>

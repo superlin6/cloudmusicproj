@@ -1,6 +1,6 @@
 <template>
     <div class="rank-block">
-        <div class="rank-item" v-for="(item,index) in blockData">
+        <div class="rank-item" v-for="(item,index) in blockData" :key="index">
             <img :src="item.imgUrl" @click="toRankList(item.id)">
             <div class="font">{{item.title}}</div>
         </div>
