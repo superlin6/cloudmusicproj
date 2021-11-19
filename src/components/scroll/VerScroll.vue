@@ -20,7 +20,7 @@ export default {
     //     this.verScroll();
     // // console.log("scroll:" + this.num);
     // });
-    console.log('created')
+    // console.log('created')
   },
   mounted(){
         // 完美解决 但是触发次数非常多，需要做计数器的处理 已做

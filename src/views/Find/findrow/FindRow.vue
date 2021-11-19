@@ -18,7 +18,7 @@
               slot="item-img"
               @click="toItemList(itemb.creativeId)"
             >
-              <img :src="itemb.uiElement.image.imageUrl" />
+              <img @load="verScroll" :src="itemb.uiElement.image.imageUrl" />
               <div class="playCount">
                 <img src="~assets/img/findd/findrow/play.png" />
                 <span class="count">{{
@@ -42,7 +42,7 @@
         >
           <find-row-item v-for="(itemb, indexb) in itema" :key="indexb">
             <div class="item-img" slot="item-img" @click="toItemList(itemb.id)">
-              <img :src="itemb.picUrl" />
+              <img @load="verScroll" :src="itemb.picUrl" />
               <div class="playCount">
                 <img src="~assets/img/findd/findrow/play.png" />
                 <span class="count">{{ itemb.playcount | playCount }}</span>
@@ -85,6 +85,7 @@ export default {
   components: { FindRowMV, FindRowItem, FindRowBlock },
   data() {
     return {
+      firstLoad: true,
       comData: "",
       comData2: "",
       comData3: "",
@@ -92,8 +93,11 @@ export default {
     };
   },
   created(){
-    this.InitData();
-    this.getData();
+    this.$bus.on('login',() => {
+        // console.log('findrow created')
+        this.firstLoad = true; //初始化firstLoad
+        this.$bus.off('login') //关闭总线
+    })
   },
   methods: {
     InitData() {
@@ -155,11 +159,15 @@ export default {
       this.$router.push({ name: "FindRowItemList", query: { id } });
     },
     verScroll() {
+      //传给verscroll包裹的img 
       this.loadCount++;
       // console.log(this.loadCount);
-      if (this.loadCount >= 6) {
-          this.$bus.emit("verScroll");
-          this.$bus.off('verScroll');//已经刷新过了 就不要了 暂时解决方案 登录后未验证
+      if (this.loadCount >= ((this.comData.length + this.comData2.length) + 1) * 6){
+        //这里if的意思是 this.comData comData2都是[{},{},...] 而comData3是[]直接装入 *6是为了方便 可以直接取
+        console.log(this.loadCount);
+        this.$bus.emit("verScroll");
+        this.$bus.off("verScroll"); //已经刷新过了 就不要了 暂时解决方案 登录后未验证
+        this.loadCount = 0;//初始化
       }
     },
   },
@@ -167,8 +175,11 @@ export default {
     this.$emit("finish"); //刷新scroll
   },
   activated() {
-    this.InitData();
-    this.getData();
+    if (this.firstLoad) {//如果首次加载 或登录后首次加载 或注销后首次加载
+      this.InitData();
+      this.getData();
+      this.firstLoad = false
+    }
   },
   filters: {
     playCount(val) {
@@ -178,6 +189,9 @@ export default {
       } else return val;
     },
   },
+  watch:{
+    
+  }
 };
 </script>
 

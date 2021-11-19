@@ -46,6 +46,7 @@
                                 window.localStorage.setItem('userId', res.account.id);//用户
                                 this.$router.push({name: 'Home'});
                                 // console.log('router'+this.$router.options.routes)
+                                this.$bus.emit('login')//发送登录信号
                             })
                         } else if (res.code == 400) {
                             Dialog.alert({
