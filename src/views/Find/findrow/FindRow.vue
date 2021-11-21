@@ -93,8 +93,6 @@ export default {
     };
   },
   created() {
-    this.InitData();
-    this.getData();
     this.$bus.on("login", () => {
       // console.log('findrow created')
       this.firstLoad = true; //初始化firstLoad
@@ -163,13 +161,12 @@ export default {
       //传给verscroll包裹的img
       this.loadCount++;
       // console.log(this.loadCount);
-      console.log(this.comData.length + this.comData2.length)
-      if ((this.loadCount >= (this.comData.length + this.comData2.length + 1) * 6) && this.comData.length + this.comData2.length !== 0) {
+      // console.log(this.comData.length + this.comData2.length);
+      if (this.loadCount >= (this.comData.length + this.comData2.length + 1) * 6 && this.comData.length + this.comData2.length !== 0) {
         //这里if的意思是 this.comData comData2都是[{},{},...] 而comData3是[]直接装入 *6是为了方便 可以直接取
-        console.log(this.loadCount);
-        this.$bus.emit("verScroll");
-        // this.$bus.off("verScroll"); //已经刷新过了 就不要了 暂时解决方案 登录后未验证 解决切换tab会报错问题 缺陷：需要在登录页重新on
-        this.loadCount = 0; //初始化
+          // console.log(this.loadCount);
+          this.$bus.emit("verScroll");
+          this.loadCount = 0; //初始化
       }
     },
   },
@@ -180,6 +177,8 @@ export default {
     // console.log(this.$route.meta);
     if (this.firstLoad) {
       //如果首次加载 或登录后首次加载 或注销后首次加载
+      this.InitData();
+      this.getData();
       this.firstLoad = false;
     }
   },
@@ -189,14 +188,6 @@ export default {
         if (val < 100000000) return (val / 10000).toFixed(1) + "万";
         else return (val / 100000000).toFixed(1) + "亿";
       } else return val;
-    },
-  },
-  watch: {
-    firstLoad(newVal,oldVal) {
-      if (newVal == true) {
-        this.InitData();
-        this.getData();
-      }
     },
   },
 };

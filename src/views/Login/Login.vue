@@ -44,7 +44,7 @@
                                 message: '登录成功',
                             }).then(() => {
                                 window.localStorage.setItem('userId', res.account.id);//用户
-                                this.$router.push({name: 'Home'});
+                                this.$router.go(-1);
                                 // console.log('router'+this.$router.options.routes)
                                 this.$bus.emit('login')//发送登录信号
                             })

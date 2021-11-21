@@ -26,7 +26,10 @@ export default {
         // 完美解决 但是触发次数非常多，需要做计数器的处理 已做
     this.$bus.on('verScroll',() => {
         // console.log('bus');
-        this.verScroll();
+        this.$nextTick(() => {//这里要nexttick是emit的时候可能还没获取到更新的数据导致总报style的错误
+            this.verScroll();
+        })
+        
     })
   },
   methods: {
@@ -35,7 +38,7 @@ export default {
         let itemWidth = this.$slots.default[0].elm.childNodes[0].clientWidth;
         // console.log(this.$slots.default[0]);
         let width = this.num * itemWidth;
-        // console.log(width);
+        console.log(width);
         this.$refs.content.style.width = width + "px";
         // console.log(this.$refs.content)
         if (!this.scroll) {
