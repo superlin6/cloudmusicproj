@@ -92,12 +92,13 @@ export default {
       loadCount: 0,
     };
   },
-  created(){
-    this.$bus.on('login',() => {
-        // console.log('findrow created')
-        this.firstLoad = true; //初始化firstLoad
-        this.$bus.off('login') //关闭总线
-    })
+  created() {
+    this.InitData();
+    this.getData();
+    this.$bus.on("login", () => {
+      // console.log('findrow created')
+      this.firstLoad = true; //初始化firstLoad
+    });
   },
   methods: {
     InitData() {
@@ -159,15 +160,16 @@ export default {
       this.$router.push({ name: "FindRowItemList", query: { id } });
     },
     verScroll() {
-      //传给verscroll包裹的img 
+      //传给verscroll包裹的img
       this.loadCount++;
       // console.log(this.loadCount);
-      if (this.loadCount >= ((this.comData.length + this.comData2.length) + 1) * 6){
+      console.log(this.comData.length + this.comData2.length)
+      if ((this.loadCount >= (this.comData.length + this.comData2.length + 1) * 6) && this.comData.length + this.comData2.length !== 0) {
         //这里if的意思是 this.comData comData2都是[{},{},...] 而comData3是[]直接装入 *6是为了方便 可以直接取
         console.log(this.loadCount);
         this.$bus.emit("verScroll");
-        this.$bus.off("verScroll"); //已经刷新过了 就不要了 暂时解决方案 登录后未验证
-        this.loadCount = 0;//初始化
+        // this.$bus.off("verScroll"); //已经刷新过了 就不要了 暂时解决方案 登录后未验证 解决切换tab会报错问题 缺陷：需要在登录页重新on
+        this.loadCount = 0; //初始化
       }
     },
   },
@@ -175,10 +177,10 @@ export default {
     this.$emit("finish"); //刷新scroll
   },
   activated() {
-    if (this.firstLoad) {//如果首次加载 或登录后首次加载 或注销后首次加载
-      this.InitData();
-      this.getData();
-      this.firstLoad = false
+    // console.log(this.$route.meta);
+    if (this.firstLoad) {
+      //如果首次加载 或登录后首次加载 或注销后首次加载
+      this.firstLoad = false;
     }
   },
   filters: {
@@ -189,9 +191,14 @@ export default {
       } else return val;
     },
   },
-  watch:{
-    
-  }
+  watch: {
+    firstLoad(newVal,oldVal) {
+      if (newVal == true) {
+        this.InitData();
+        this.getData();
+      }
+    },
+  },
 };
 </script>
 
