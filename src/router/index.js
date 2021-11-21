@@ -40,16 +40,28 @@ const routes = [
         path: '/home',
         name: 'Home',
         component: Home,
+        // meta:{
+        //     requireAuth:true,//表示需要认证
+        //     requireReLoad:true //从而实现keep-alive的登录信息刷新
+        // }
     },
     {
         path: '/find',
         name: 'Find',
-        component: Find
+        component: Find,
+        // meta:{
+        //     requireAuth:true,
+        //     requireReLoad:true
+        // }
     },
     {
         path: '/mine',
         name: 'Mine',
         component: Mine,
+        // meta:{
+        //     requireAuth:true,
+        //     requireReLoad:true
+        // }
     },
     {
         path: '/video',
@@ -116,5 +128,15 @@ const routes = [
 const router = new VueRouter({
     routes
 })
+// router.beforeEach((to,from,next)=>{
+//     if(to.meta.requireAuth){
+//         if(window.localStorage.getItem('userId')){
+//             next()
+//         }
+//         else {
 
+//         }
+//     };
+//     next();
+// })
 export default router

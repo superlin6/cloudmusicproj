@@ -59,6 +59,7 @@
                             message: '退出成功'
                         }).then(() => {
                             window.localStorage.clear('userId');
+                            this.$bus.emit('login');
                             history.go(-1);
                             // request({
                             //     url: '/login/refresh',
