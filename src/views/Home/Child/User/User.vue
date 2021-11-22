@@ -53,6 +53,7 @@
                     this.imgUrl = require('@/static/img/home/user/logout.png')
                     this.name='未登录,点击登录';
                     this.level = null;
+                    this.type = 0;
                 }
             },
             ToMine(type) {
