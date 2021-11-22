@@ -22,9 +22,11 @@
 </template>
 
 <script>
-    import {request} from "network/request";
-    import TopPicBlock from "../toppicblock/TopPicBlock";
-    import Scroll from "../scroll/Scroll";
+import TopPicBlock from "../toppicblock/TopPicBlock";
+import Scroll from "../scroll/Scroll";
+import { getCreaCollList, getLikeList, getPlayListDetail, getRecommendSongs } from "../../network/Components/SongList/songlist";
+import { getUserDetail } from "../../network/Home/home";
+import { getSongDetail } from '../../network/Components/AudioBar/audiobar';
 
     export default {
         name: "SongList",
@@ -42,19 +44,9 @@
         },
         methods: {
             getLikeList() {
-                request({
-                    url: '/likelist',
-                    params: {
-                        uid: window.localStorage.getItem('userId')
-                    }
-                }).then(res => {
-                    console.log(res);
-                    request({//获取name
-                        url: '/user/detail',
-                        params: {
-                            uid: window.localStorage.getItem('userId')
-                        }
-                    }).then(res => {
+                getLikeList(window.localStorage.getItem('userId')).then(res => {
+                    // console.log(res);
+                    getUserDetail(window.localStorage.getItem('userId')).then(res => {
                         // console.log(res);
                         this.name = '我喜欢的音乐';
                         this.author = res.profile.nickname;
@@ -63,12 +55,7 @@
                     let ids = res.ids;
                     let idsurl = ids.join();
                     // console.log(typeof idsurl);//string
-                    request({
-                        url: '/song/detail',
-                        params: {
-                            ids: idsurl
-                        }
-                    }).then(res => {
+                    getSongDetail(idsurl).then(res => {
                             // console.log(res);
                             this.imgUrl = res.songs[0].al.picUrl;
                             res.songs.forEach(item => {
@@ -85,12 +72,7 @@
                 })
             },
             getCreaCollList(i) {
-                request({
-                    url: '/user/playlist',
-                    params: {
-                        uid: window.localStorage.getItem('userId')
-                    }
-                }).then(res => {
+                getCreaCollList(window.localStorage.getItem('userId')).then(res => {
                     let data = res.playlist.filter((item, index) => index != 0);//拿到除了喜欢的音乐以外其他歌单列表
                     let ids = [];//ids存放歌单的id
                     data.forEach(item => {
@@ -99,10 +81,7 @@
                     // console.log(ids);
                     switch (i) {//传入的i为歌单index
                         case i:
-                            request({
-                                url: '/playlist/detail',
-                                params: {id: ids[i]}//歌单的id
-                            }).then(res => {
+                            getPlayListDetail(ids[i]).then(res => {
                                 // console.log(res);
                                 this.name = res.playlist.name;//取出歌单名和作者，传到toppicblock
                                 this.author = res.playlist.creator.nickname;
@@ -117,10 +96,7 @@
                                     trackIds.push(item.id);
                                 })
                                 // console.log(trackIds.join(','));
-                                request({
-                                    url: '/song/detail',
-                                    params: {ids: trackIds.join(',')}
-                                }).then(res => {
+                                getSongDetail(trackIds.join(',')).then(res => {
                                     // console.log(res);
                                     res.songs.forEach(item => {
                                         // console.log(item)
@@ -141,10 +117,7 @@
             getOtherList(id) {
                 if (this.$route.path != '/findrowmvdetail') {
                     //这里设置条件是因为发现页有歌单、视频，一旦有id会使songlist的v-if为true songlist只在歌单页获取，视频不需要
-                    request({
-                        url: '/playlist/detail',
-                        params: {id}
-                    }).then(res => {
+                    getPlayListDetail(id).then(res => {
                             // console.log(res);
                             this.name = res.playlist.name;//取出歌单名和作者，传到toppicblock
                             this.author = res.playlist.creator.nickname;
@@ -159,10 +132,7 @@
                                 trackIds.push(item.id);
                             })
                             // console.log(trackIds.join(','));
-                            request({
-                                url: '/song/detail',
-                                params: {ids: trackIds.join(',')}
-                            }).then(res => {
+                            getSongDetail(trackIds.join(',')).then(res => {
                                 // console.log(res);
                                 res.songs.forEach(item => {
                                     // console.log(item.name)
@@ -181,10 +151,8 @@
             getDailyList() {
                 this.name = '每日推荐';
                 this.author = '网易云音乐'
-                request({
-                    url: '/recommend/songs'
-                }).then(res => {
-                    console.log(res);
+                getRecommendSongs().then(res => {
+                    // console.log(res);
                     this.imgUrl = res.data.dailySongs[0].al.picUrl;
                     res.data.dailySongs.forEach(item => {
                         // console.log(item.name)

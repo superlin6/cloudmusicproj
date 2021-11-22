@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import {request} from "network/request";
+import { getUserDetail } from "../../../../network/Home/home";
 
     export default {
         name: "User",
@@ -37,12 +37,7 @@
                 if (window.localStorage.getItem('userId')!=null) {
                     this.type = 1;//type=1表示点击进入主页 否则未登录 点击跳转登录页
                     // console.log(res)
-                    request({
-                        url: '/user/detail',
-                        params: {
-                            uid: window.localStorage.getItem('userId')
-                        }
-                    }).then(res1 => {
+                    getUserDetail(window.localStorage.getItem('userId')).then(res1 => {
                         // console.log(res1);
                         this.imgUrl = res1.profile.avatarUrl;
                         this.name = res1.profile.nickname;

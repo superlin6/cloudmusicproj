@@ -37,7 +37,7 @@
                 <span>当前播放&nbsp;</span>
                 <span class="num">({{songlists.length}})</span>
             </div>
-            <div class="list" v-for="item in newSongLists">
+            <div class="list" v-for="item in newSongLists" :key="item.id">
                 <div class="msg" @click="setPlayerId(item.id)">
                     <span :style="{color:(item.id==id?'#ff0000':'#000000')}">{{item.name}}</span>
                     <span class="author">&nbsp;-&nbsp;{{item.author}}</span>
@@ -51,8 +51,8 @@
 </template>
 
 <script>
-    import {request} from "network/request";
-    import SongView from "./songview/SongView";
+import { getLyric, getSongDetail, getSongUrl } from "../../network/Components/AudioBar/audiobar";
+import SongView from "./songview/SongView";
 
     export default {
         name: "AudioBar",
@@ -87,40 +87,23 @@
                     // console.log(val);//获取到点击的歌曲id
                     let value = val;
                     this.id = value;//歌曲id
-                    request({
-                        url: '/song/detail',
-                        params: {
-                            ids: value
-                        }
-                    }).then(res => {
+                    getSongDetail(value).then(res => {
                         // console.log(res);//得到歌曲详细信息
                         this.imgUrl = res.songs[0].al.picUrl;
                         this.name = res.songs[0].name;
                         this.author = res.songs[0].ar[0].name;
-                        request({//获取对应音乐的url
-                            url: '/song/url',
-                            params: {id: value},
-                        }).then(res1 => {
+                    }).then(()=>{
+                        getSongUrl(value).then(res1 => {
                             // console.log(res1);
                             this.songUrl = res1.data[0].url;
                             // console.log(this.songUrl);
                         });
                     });
-                    this.getLyric();//获取歌词
-                });
-            },
-            getLyric() {
-                if (this.id) {
-                    request({
-                        url: '/lyric',
-                        params: {
-                            id: this.id
-                        }
-                    }).then(res => {
+                    getLyric(value).then(res => {
                         // console.log(res.lrc.lyric);
                         this.lyric = res.lrc.lyric;
-                    })
-                }
+                    });//获取歌词
+                });
             },
             getSongList() {
                 this.$bus.on("songlists", val => {

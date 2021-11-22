@@ -21,7 +21,6 @@
 </template>
 
 <script>
-    import {request} from "network/request";
     import TopBar from "components/topbar/TopBar";
     import SongList from "../../../../../../../components/songlist/SongList";
 

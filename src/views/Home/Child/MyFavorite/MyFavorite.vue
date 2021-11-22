@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    import {request} from "network/request";
+import { getCreaCollList } from '../../../../network/Components/SongList/songlist';
 
     export default {
         name: "MyFavorite",
@@ -30,13 +30,7 @@
             },
             LoginCheck(){
                 if(window.localStorage.getItem('userId')!=null){
-                    request({
-                        url: '/user/playlist',
-                        params:{
-                            uid:window.localStorage.getItem('userId')
-                        },
-                        timeout: 5000,
-                    }).then(res => {
+                    getCreaCollList(window.localStorage.getItem('userId')).then(res => {
                         this.total = res.playlist[0].trackCount;
                         this.imgUrl = res.playlist[0].coverImgUrl;
                     });

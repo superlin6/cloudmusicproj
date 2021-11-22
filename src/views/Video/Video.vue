@@ -24,7 +24,6 @@
 <script>
     import {request} from "network/request";
     import Scroll from "components/scroll/Scroll";
-    import {Loading} from 'vant';
 
     export default {
         name: "Video",

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import {request} from "network/request";
+import { getBlockPage } from '../../../network/Find/find';
 
     export default {
         name: "Carousel",
@@ -19,9 +19,7 @@
             }
         },
         created() {
-            request({
-                url:'/homepage/block/page'
-            }).then(res=>{
+            getBlockPage().then(res=>{
                 // console.log(res.data.blocks);
                 //blocks共4个 轮播图0 其他三行1 2 3
                 this.carouselData = res.data.blocks[0].extInfo.banners;

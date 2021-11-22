@@ -77,7 +77,7 @@
 <script>
 import FindRowBlock from "./FindRowBlock";
 import FindRowItem from "./FindRowItem";
-import { request } from "network/request";
+import { getBlockPage, getDailyRecommend, getHotRecommend } from "../../../network/Find/find";
 import FindRowMV from "./FindRowMV";
 
 export default {
@@ -105,9 +105,7 @@ export default {
       this.comData3 = [];
     },
     getData() {
-      request({
-        url: "/homepage/block/page",
-      }).then((res) => {
+      getBlockPage().then((res) => {
         //下一步取数据格式相同的数据
         if (window.localStorage.userId == null) {
           //未登录
@@ -123,9 +121,7 @@ export default {
           // console.log(this.comData)
         } else {
           //已登录 目前发现自己账号只有4条 只有1可以拿 所以换成取登录后的推荐歌单
-          request({
-            url: "/recommend/resource",
-          }).then((res) => {
+          getDailyRecommend().then((res) => {
             // console.log(res);
             // 每次取6个数据 使得可以水平滑动
             let number = 0;
@@ -142,12 +138,8 @@ export default {
           });
         }
       });
-      request({
-        //热门推荐(无需登录)
-        url: "/top/playlist/highquality?limit=6",
-      }).then((res) => {
-        // console.log(res);
-        // this.comData3 = res.playlists;
+      //传入参数为limit
+      getHotRecommend(6).then((res) => {
         res.playlists.forEach((item) => {
           this.comData3.push(item);
         });

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-    import {request} from "network/request";
+import { getCreaCollList } from '../../../../network/Components/SongList/songlist';
 
     export default {
         name: "Create",
@@ -44,16 +44,10 @@
             LoginCheck() {//登录验证
                 this.createlists = [];
                 if (window.localStorage.getItem('userId') != null) {
-                    request({
-                        url: '/user/playlist',
-                        params: {
-                            uid: window.localStorage.getItem('userId')
-                        },
-                        timeout: 5000
-                    }).then(res => {
+                    getCreaCollList(window.localStorage.getItem('userId')).then(res => {
                         res.playlist.forEach((item, index) => {
                             //    index=0的歌单是‘我喜欢的音乐’，从1往后为创建的歌单
-                            if (item.userId == 306910453 && index != 0) {
+                            if (item.userId == window.localStorage.getItem('userId') && index != 0) {
                                 //放入createlist
                                 this.createlists.push(item);
                             }

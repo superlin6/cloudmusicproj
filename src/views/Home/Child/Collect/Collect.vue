@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import {request} from "network/request";
+import { getCreaCollList } from '../../../../network/Components/SongList/songlist';
 
 
     export default {
@@ -44,13 +44,7 @@
                 this.collectlists = [];
                 this.num = 0;
                 if (window.localStorage.getItem('userId') != null) {
-                    request({
-                        url: '/user/playlist',
-                        params: {
-                            uid: window.localStorage.getItem('userId')
-                        },
-                        timeout: 5000
-                    }).then(res => {
+                    getCreaCollList(window.localStorage.getItem('userId')).then(res => {
                         res.playlist.forEach((item, index) => {
                             if (item.userId != window.localStorage.getItem('userId')) {
                                 //放入createlist
@@ -64,9 +58,6 @@
                 }
             }
         },
-        // created() {
-        //     this.LoginCheck();
-        // },
         watch: {
             collectlists() {
                 this.$emit('finish')
