@@ -26,7 +26,7 @@ export default {
         // 完美解决 但是触发次数非常多，需要做计数器的处理 已做
     this.$bus.on('verScroll',() => {
         // console.log('bus');
-        this.$nextTick(() => {//这里要nexttick是emit的时候可能还没获取到更新的数据导致总报style的错误
+        this.$nextTick(() => {//这里要nexttick是想着emit的时候可能还没获取到更新的数据导致总报style的错误 但实际没有解决 因为是slot里面的问题
             this.verScroll();
         })
         
@@ -39,7 +39,8 @@ export default {
         // console.log(this.$slots.default[0]);
         let width = this.num * itemWidth;
         console.log(width);
-        this.$refs.content.style.width = width + "px";
+        if(width != 0)
+          this.$refs.content.style.width = width + "px";//可能会出现获取不到width的情况，由于加载图片较多 暂时用if可以解决 因为这里是总的组件 改变一次就可以了
         // console.log(this.$refs.content)
         if (!this.scroll) {
           this.scroll = new BScroll(this.$refs.wrapper, {
