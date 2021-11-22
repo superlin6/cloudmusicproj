@@ -94,7 +94,6 @@ export default {
   },
   created() {
     this.$bus.on("login", () => {
-      // console.log('findrow created')
       this.firstLoad = true; //初始化firstLoad
     });
   },
