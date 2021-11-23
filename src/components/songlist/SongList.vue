@@ -1,6 +1,6 @@
 <template>
     <div class="song-list">
-        <scroll :data="songlists">
+        <scroll :data="songlists" :style="'height:calc(100% - 89px)'">
             <top-pic-block v-if="name!=''&&author!=''&&imgUrl!=''"
                            :name="name" :author="author" :imgUrl="imgUrl" :bgUrl="bgUrl"></top-pic-block>
             <div class="play-all" v-if="$route.path!='/searcher'" @click="setSongLists">

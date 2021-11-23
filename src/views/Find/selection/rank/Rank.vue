@@ -13,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <scroll ref="scroll" :listenScroll="true" @scroll="scrollHandler">
+    <scroll ref="scroll" :listenScroll="true" @scroll="scrollHandler" :style="'height:calc(100% - 70px)'">
       <div class="official clearfix">
         <div class="title title0">{{ titles[0] }}榜</div>
         <!-- 这里需要对官方榜每个行组件传入对应index的数据 -->

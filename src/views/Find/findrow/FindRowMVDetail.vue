@@ -1,6 +1,6 @@
 <template>
   <div class="find-row-mv-detail">
-    <scroll :data="comments">
+    <scroll :data="comments" :style="'height:calc(100% - 89px)'">
       <div class="video" @click="changeStatus">
         <video :src="url" ref="video" controls autoplay></video>
       </div>
@@ -116,7 +116,7 @@ export default {
       //获取评论
       if (!this.finish) {
         getMVComment(id,this.offset).then((res3) => {
-          console.log(res3.comments);
+          // console.log(res3.comments);
           // this.comments = res3.comments;//获取评论
           setTimeout(() => {
             res3.comments.forEach((item) => {

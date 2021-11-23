@@ -7,7 +7,7 @@
       <span class="name">{{ name }}</span>
       <span class="author">&nbsp;-&nbsp;{{ author }}</span>
     </div>
-    <scroll ref="scroll" :data="comments">
+    <scroll ref="scroll" :data="comments" :style="'height:calc(100% - 77px)'">
       <div class="comment">
         <div class="title">评论({{ total }})</div>
         <div class="comment-block">

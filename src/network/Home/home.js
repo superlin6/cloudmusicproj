@@ -1,7 +1,7 @@
 import { request } from "../request";
 
 export function getUserDetail(userId){
-    request({
+    return request({
         url: '/user/detail',
         params: {
             uid: userId ? userId : ''

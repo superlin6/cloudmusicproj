@@ -42,3 +42,7 @@
     border-radius: 12px;
     margin-bottom: 8px;
 }
+.other:last-child{
+    padding-bottom: 40px;
+    margin-bottom: 0;
+}
