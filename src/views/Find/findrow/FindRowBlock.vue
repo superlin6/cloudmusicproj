@@ -24,7 +24,7 @@
             },
             title: {
                 type: String,
-                default: '热门推荐'
+                default: '热门歌单'
             }
         }
         // created() {

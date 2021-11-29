@@ -25,6 +25,7 @@
     margin:0 auto;
     display: flex;
     justify-content: center;
+    transition: all .5s ease;
 }
 .audio-bar .content{
     width: 80%;

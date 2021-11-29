@@ -28,11 +28,12 @@ export function getToplist(){
     })
 }
 
-export function getMVAll(limit){
+export function getMVAll(limit,order){
     return request({
         url: '/mv/all',
         params:{
             limit,
+            order
         }
     })
 }

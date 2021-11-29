@@ -7,3 +7,13 @@
     bottom:0;
     height: 49px;
 }
+.tabbar::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom:49px;
+    height: 1px;
+    opacity: .7;
+    background-color: rgb(229, 226, 226);
+}
