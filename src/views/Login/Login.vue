@@ -1,7 +1,7 @@
  <template>
   <div class="login clearfix">
     <div class="icon">
-      <img src="@/static/img/login/login.jpg" />
+      <img src="@/static/img/login/login.jpeg" />
     </div>
     <div class="form clearfix">
       <van-field v-model="account" placeholder="请输入账号"></van-field>
@@ -18,13 +18,17 @@
         暂时只支持手机密码方式登录，其他方式正在开发中...
       </div>
     </div>
+
+    <star-bg></star-bg>
   </div>
 </template>
 <script>
 import { Dialog } from "vant";
 import { cellphoneLogin } from "../../network/Login/login";
+import StarBg from './components/StarBg.vue';
 
 export default {
+  components: { StarBg },
   name: "Login",
   data() {
     return {

@@ -4,9 +4,9 @@ export default function(func,wait) {
         let context = this;
         let args = arguments;
         if(!timeout) {
+            func.apply(context,args)
             timeout = setTimeout(() => {
                 timeout = null;
-                func.apply(context,args)
             },wait)
         }
     }

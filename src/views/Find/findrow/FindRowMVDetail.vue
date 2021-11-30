@@ -1,6 +1,6 @@
 <template>
   <div class="find-row-mv-detail">
-    <scroll :data="comments" :style="'height:calc(100% - 89px)'">
+    <scroll :data="comments" :style="'height:calc(100% - 89px)'" @scrollToEnd="getComments($route.query.id)" pullup>
       <div class="video" @click="changeStatus">
         <video :src="url" ref="video" controls autoplay></video>
       </div>
@@ -49,9 +49,8 @@
             <div
               class="content"
               v-if="!isLoading && !finish"
-              @click="getComments($route.query.id)"
             >
-              点击加载更多...
+              上拉加载更多...
             </div>
             <div class="content" v-if="finish">已经到底部啦...</div>
             <van-loading
@@ -71,6 +70,7 @@
 <script>
 import Scroll from "components/scroll/Scroll";
 import { getMVComment, getMVDetail, getMVDetailInfo, getMVUrl } from "../../../network/Find/find";
+import throttle from '../../../uitls/throttle';
 
 export default {
   name: "FindRowMVDetail",
@@ -111,7 +111,8 @@ export default {
       if (this.status) this.$refs.video.play();
       else this.$refs.video.pause();
     },
-    getComments(id) {
+    getComments:throttle(function(id){
+      console.log(id);
       this.isLoading = true;
       //获取评论
       if (!this.finish) {
@@ -130,7 +131,7 @@ export default {
           }, 1000);
         });
       }
-    },
+    },1000),
     toLike(index) {
       this.comments[index].liked = !this.comments[index].liked;
       if (this.comments[index].liked) {

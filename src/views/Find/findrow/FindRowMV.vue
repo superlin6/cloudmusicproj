@@ -2,18 +2,18 @@
   <div class="find-row-mv">
     <div class="title">MV推荐</div>
     <VerScroll :num="mvLists.length">
-      <div class="mv-row">
-        <div class="mv-item" v-for="(item, index) in mvLists" :key="index">
-          <div class="content">
-            <img :src="item.cover" @click="toDetail(item.id)" />
-            <div class="font">{{ item.name }}</div>
-          </div>
-          <div class="playCount">
-            <img src="~assets/img/findd/findrow/play.png" />
-            <span class="count">{{ item.playCount | playCount }}</span>
-          </div>
+    <div class="mv-row">
+      <div class="mv-item" v-for="(item, index) in mvLists" :key="index">
+        <div class="content">
+          <img :src="item.cover" @click="toDetail(item.id)" />
+          <div class="font">{{ item.name }}</div>
+        </div>
+        <div class="playCount">
+          <img src="~assets/img/findd/findrow/play.png" />
+          <span class="count">{{ item.playCount | playCount }}</span>
         </div>
       </div>
+    </div>
     </VerScroll>
   </div>
 </template>

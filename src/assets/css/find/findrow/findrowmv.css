@@ -2,14 +2,11 @@
     margin:6px 20px;
     font-weight: bold;
 }
-
 .mv-row{
     padding: 10px 4px;
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: hidden;
-    justify-content: space-around;
 }
+
 .mv-row .mv-item{
     width: 180px;
     position: relative;

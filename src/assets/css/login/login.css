@@ -10,12 +10,14 @@
     width: 100%;
     height: 100%;
     /*background-color: rgba(97, 171, 220, 0.8);*/
-    background: linear-gradient(#d0deff, #97b3ff, #898aff);
+    /* background: linear-gradient(#d0deff, #97b3ff, #898aff); */
+    /* background:rgb(241, 241, 241); */
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }
 
 .login .icon {
     margin: 30px auto;
-    margin-top:80px ;
+    margin-top:90px ;
     width: 128px;
     height: 128px;
 }
@@ -30,6 +32,10 @@
 .login .form {
     /*让按钮居中*/
     text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 20;
 }
 
 .login .form .van-field {
@@ -40,10 +46,11 @@
 }
 
 .login .form .van-button {
-    margin:0 auto;
+    margin:20px auto 0;
     border-radius: 14px;
     box-shadow: 0 0 2px #dfefff;
-    height: 35px;
-    background-color: #f8f8f8;
+    height: 40px;
+    background-color: #fff;
     color: #8c939d;
 }
+

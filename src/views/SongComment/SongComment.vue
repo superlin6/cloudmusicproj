@@ -7,7 +7,7 @@
       <span class="name">{{ name }}</span>
       <span class="author">&nbsp;-&nbsp;{{ author }}</span>
     </div>
-    <scroll ref="scroll" :data="comments" :style="'height:calc(100% - 77px)'">
+    <scroll ref="scroll" :data="comments" :style="'height:calc(100% - 77px)'" pullup @scrollToEnd="getComments($route.query.id)">
       <div class="comment">
         <div class="title">评论({{ total }})</div>
         <div class="comment-block">
@@ -40,9 +40,8 @@
             <div
               class="content"
               v-if="!isLoading && !finish"
-              @click="getComments($route.query.id)"
             >
-              点击加载更多...
+              上拉加载更多...
             </div>
             <div class="content" v-if="finish">已经到底部啦...</div>
             <van-loading
@@ -63,6 +62,7 @@
 import Scroll from "components/scroll/Scroll";
 import { getSongDetail } from "../../network/Components/AudioBar/audiobar";
 import { getMusicComment } from "../../network/SongComment/songcomment";
+import throttle from '../../uitls/throttle';
 
 export default {
   name: "SongComment",
@@ -96,12 +96,12 @@ export default {
         this.author = au;
       });
     },
-    getComments(id) {
+    getComments:throttle(function(id) {
       this.isLoading = true;
       //获取评论
       if (!this.finish) {
         getMusicComment(id,this.offset).then((res) => {
-          console.log(res);
+          // console.log(res);
           // this.comments = res.comments;//获取评论
           this.total = res.total;
           setTimeout(() => {
@@ -116,7 +116,7 @@ export default {
           }, 1000);
         });
       }
-    },
+    },1000),
     toLike(index) {
       this.comments[index].liked = !this.comments[index].liked;
       if (this.comments[index].liked) {
