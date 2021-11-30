@@ -4,8 +4,8 @@ import {Dialog} from "vant";
 export function request(config) {
     //创建axios实例
     const axios1 = axios.create({
-        baseURL: 'http://localhost:3000',
-        // baseURL: 'http://superlin.xyz:3000',
+        // baseURL: 'http://localhost:3000',
+        baseURL: 'http://superlin.xyz:3000',
         withCredentials:true
     })
     // 2.1.请求拦截的作用
