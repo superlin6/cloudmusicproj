@@ -3,7 +3,7 @@
         <scroll :data="songlists" :style="'height:calc(100% - 89px)'">
             <top-pic-block v-if="name!=''&&author!=''&&imgUrl!=''"
                            :name="name" :author="author" :imgUrl="imgUrl" :bgUrl="bgUrl"></top-pic-block>
-            <div class="play-all" v-if="$route.path!='/searcher'" @click="setSongLists">
+            <div class="play-all" v-if="$route.path!='/searcher' && $route.path!='/statistic'" @click="setSongLists">
                 <img src="~assets/img/home/selectbox/local/play.png">
                 <span>播放全部({{songlists.length}})</span>
             </div>

@@ -141,6 +141,7 @@ export default {
       //传入参数为limit
       getHotRecommend(6).then((res) => {
         res.playlists.forEach((item) => {
+          console.log(item)
           this.comData3.push(item);
         });
       });

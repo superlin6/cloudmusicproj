@@ -48,6 +48,7 @@
         <div slot="item-video">视频</div>
         <div slot="item-daily">每日推荐</div>
         <div slot="item-comment">评论</div>
+        <div slot="item-statistic">统计</div>
       </top-bar-item>
       <top-bar-item>
         <div slot="item-search">

@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="login clearfix">
     <div class="icon">
       <img src="@/static/img/login/login.jpeg" />
@@ -23,17 +23,17 @@
   </div>
 </template>
 <script>
-import { Dialog } from "vant";
-import { cellphoneLogin } from "../../network/Login/login";
+import { Dialog } from 'vant';
+import { cellphoneLogin } from '../../network/Login/login';
 import StarBg from './components/StarBg.vue';
-
+import axios from 'axios';
 export default {
   components: { StarBg },
-  name: "Login",
+  name: 'Login',
   data() {
     return {
-      account: "",
-      password: "",
+      account: '',
+      password: '',
     };
   },
   methods: {
@@ -44,20 +44,21 @@ export default {
           Dialog.alert({
             message: res.msg,
           }).then(() => {
-            this.password = "";
+            this.password = '';
           });
         } else if (res.code == 200) {
           Dialog.alert({
-            message: "登录成功",
+            message: '登录成功',
           }).then(() => {
-            window.localStorage.setItem("userId", res.account.id); //用户
+            localStorage.setItem('userId', res.account.id); //用户
+            // localStorage.setItem('cookie',res.cookie);
             this.$router.go(-1);
             // console.log('router'+this.$router.options.routes)
-            this.$bus.emit("login"); //发送登录信号
+            this.$bus.emit('login'); //发送登录信号
           });
         } else if (res.code == 400) {
           Dialog.alert({
-            message: "手机格式错误！",
+            message: '手机格式错误！',
           });
         }
       });
@@ -66,5 +67,4 @@ export default {
 };
 </script>
 
-<style src="assets/css/login/login.css">
-</style>
+<style src="assets/css/login/login.css"></style>

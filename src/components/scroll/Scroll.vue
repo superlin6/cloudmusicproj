@@ -64,6 +64,11 @@ export default {
       default: 20,
     },
   },
+  created() {
+    window.onresize = () => {
+      this.refresh()
+    }
+  },
   mounted() {
     // 保证在DOM渲染完毕后初始化better-scroll
     setTimeout(() => {

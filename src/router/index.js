@@ -99,6 +99,11 @@ const routes = [
         component: Daily
     },
     {
+        path: '/statistic',
+        name: 'Statistic',
+        component: () => import('../views/Find/selection/statistic/Statistic.vue')
+    },
+    {
         path: '/rank',
         name: 'Rank',
         component: Rank

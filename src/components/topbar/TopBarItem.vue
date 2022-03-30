@@ -11,7 +11,7 @@
         ||$route.path=='/rank'||$route.path=='/ranklist'
         ||$route.path=='/findrowitemlist'||$route.path=='/searcher'
         ||$route.path=='/findrowmvdetail'||$route.path=='/songcomment'
-        ||$route.path=='/daily'" name="item-back">
+        ||$route.path=='/daily'||$route.path=='/statistic'" name="item-back">
         </slot>
         <!-- item-search小搜索按钮 右 -->
         <slot v-if="$route.path=='/home'||$route.path=='/myfavoritelist'
@@ -31,6 +31,7 @@
         <slot v-if="$route.path=='/mine'" name="item-mine"></slot>
         <slot v-if="$route.path=='/findrowmvdetail'" name="item-mvdetail"></slot>
         <slot v-if="$route.path=='/songcomment'" name="item-comment"></slot>
+        <slot v-if="$route.path=='/statistic'" name="item-statistic"></slot>
     </div>
 </template>
 

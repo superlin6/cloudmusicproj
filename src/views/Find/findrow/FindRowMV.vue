@@ -32,7 +32,7 @@ export default {
   methods: {
     getData() {
       getMVAll(6, "最热").then((res) => {
-        // console.log(res);
+        // console.log(res.data);
         this.mvLists = res.data;
       });
     },
