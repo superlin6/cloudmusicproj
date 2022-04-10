@@ -1,15 +1,13 @@
 <template>
   <div class="topbar">
-    <top-bar-block
-      :style="{
+    <top-bar-block :style="{
         backgroundColor:
           $route.path == '/home' || $route.path == '/find'
             ? '#f6f6f6'
             : $route.path == '/mine'
             ? 'rgba(255,255,255,.9)'
             : '#fff',
-      }"
-    >
+      }">
       <top-bar-item>
         <!-- 个人菜单 -->
         <div slot="item-option">
@@ -20,7 +18,10 @@
         </div>
         <!-- 返回 -->
         <div slot="item-back">
-          <img src="~assets/img/components/topbar/back.png" @click="back" />
+          <img
+            src="~assets/img/components/topbar/back.png"
+            @click="back"
+          />
         </div>
       </top-bar-item>
       <top-bar-item

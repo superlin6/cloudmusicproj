@@ -1,8 +1,15 @@
 <template>
   <div class="selection">
     <selection-block>
-      <selection-item v-for="(item, index) in items" :key="index">
-        <img slot="selection-item" :src="item.img" @click="toDo(index)" />
+      <selection-item
+        v-for="(item, index) in items"
+        :key="index"
+      >
+        <img
+          slot="selection-item"
+          :src="item.img"
+          @click="toDo(index)"
+        />
         <div slot="selection-name">{{ item.name }}</div>
       </selection-item>
     </selection-block>
@@ -25,7 +32,7 @@ export default {
           name: '每日推荐',
         },
         {
-          img: require('@/static/img/find/selection/FM.png'),
+          img: require('@/static/img/find/selection/statistic.png'),
           name: '偏好统计',
         },
         {
@@ -36,10 +43,10 @@ export default {
           img: require('@/static/img/find/selection/rank.png'),
           name: '排行榜',
         },
-        {
-          img: require('@/static/img/find/selection/cd.png'),
-          name: '数字专辑',
-        },
+        // {
+        //   img: require('@/static/img/find/selection/cd.png'),
+        //   name: '数字专辑',
+        // },
       ],
     };
   },
@@ -52,11 +59,15 @@ export default {
             : Toast({ message: '请先登录' });
           break;
         case 1:
-             window.localStorage.getItem('userId')
+          window.localStorage.getItem('userId')
             ? this.$router.push('/statistic')
             : Toast({ message: '请先登录' });
-            break;
-
+          break;
+        case 2:
+          window.localStorage.getItem('userId')
+            ? this.$router.push('/songs')
+            : Toast({ message: '请先登录' });
+          break;
         case 3:
           this.$router.push('/rank');
           break;

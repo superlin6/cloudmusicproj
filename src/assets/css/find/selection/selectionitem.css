@@ -1,7 +1,7 @@
 .selection-item{
     width: 20%;
     margin:0 auto;
-    float:left;
+    /* float:left; */
     text-align: center;
     font-size: 12px;
 }
