@@ -45,7 +45,7 @@ import { getSongDetail } from '../../network/Components/AudioBar/audiobar';
         methods: {
             getLikeList() {
                 getLikeList(window.localStorage.getItem('userId')).then(res => {
-                    // console.log(res);
+                    console.log(res);
                     getUserDetail(window.localStorage.getItem('userId')).then(res => {
                         // console.log(res);
                         this.name = '我喜欢的音乐';

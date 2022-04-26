@@ -17,9 +17,9 @@
                 <span>{{birthday | birthdayDisplay}}</span>
             </div>
         </div>
-        <div class="btn-all">
+        <!-- <div class="btn-all">
             <van-button>查看全部</van-button>
-        </div>
+        </div> -->
     </div>
 </template>
 

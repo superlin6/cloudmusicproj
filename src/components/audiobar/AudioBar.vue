@@ -1,5 +1,6 @@
 <template>
     <div class="sum-audio-bar" ref="song">
+      <!-- 总播放器 -->
         <div class="view" v-show="showView">
             <song-view @change="toSongView"
                        :imgUrl="imgUrl" :name="name"
@@ -12,6 +13,7 @@
                        @changeStatus="changeStatus">
             </song-view>
         </div>
+        <!-- mini播放器 -->
         <div class="audio-bar" :style="style" v-show="!showView">
             <div class="content clearfix" @click="toSongView">
                 <div class="cd">
@@ -31,6 +33,7 @@
             </div>
         </div>
         <audio ref="audio" :src="songUrl" @loadeddata="initTime"></audio>
+        <!-- 弹出层 -->
         <van-popup v-model="showList" position="bottom"
                    :close-on-click-overlay="true" :style="{ height: '50%',width:'calc(100% - 36px)'}">
             <div class="title">
@@ -73,7 +76,7 @@ import SongView from "./songview/SongView";
                 interval: null,//定时器
                 songlists: [],//songlist传过来的完整歌单
                 newSongLists: [],//给option进行crud的歌单
-                lyric: ''
+                lyric: ''//歌词
             }
         },
         methods: {

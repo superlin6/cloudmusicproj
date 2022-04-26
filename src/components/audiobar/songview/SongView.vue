@@ -4,9 +4,9 @@
             <div class="img">
                 <img src="~assets/img/components/topbar/pulldown.png" @click="back">
             </div>
-            <div class="share">
+            <!-- <div class="share">
                 <img src="~assets/img/components/topbar/share.png">
-            </div>
+            </div> -->
         </div>
         <cd-and-lyric :imgUrl="imgUrl" :name="name"
                       :author="author" :status="status"

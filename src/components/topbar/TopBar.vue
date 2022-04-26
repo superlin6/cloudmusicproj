@@ -1,13 +1,16 @@
 <template>
   <div class="topbar">
-    <top-bar-block :style="{
+    <top-bar-block
+      :style="{
         backgroundColor:
           $route.path == '/home' || $route.path == '/find'
             ? '#f6f6f6'
             : $route.path == '/mine'
             ? 'rgba(255,255,255,.9)'
             : '#fff',
-      }">
+      }"
+    >
+      <!-- 左 -->
       <top-bar-item>
         <!-- 个人菜单 -->
         <div slot="item-option">
@@ -18,12 +21,10 @@
         </div>
         <!-- 返回 -->
         <div slot="item-back">
-          <img
-            src="~assets/img/components/topbar/back.png"
-            @click="back"
-          />
+          <img src="~assets/img/components/topbar/back.png" @click="back" />
         </div>
       </top-bar-item>
+      <!-- 中 -->
       <top-bar-item
         v-if="$route.path != '/home' || $route.path != '/songview'"
         class="center"
@@ -51,6 +52,7 @@
         <div slot="item-comment">评论</div>
         <div slot="item-statistic">统计</div>
       </top-bar-item>
+      <!-- 右 -->
       <top-bar-item>
         <div slot="item-search">
           <img
@@ -58,15 +60,15 @@
             @click="toSearch"
           />
         </div>
-        <div slot="item-mine">
+        <!-- <div slot="item-mine">
           <img src="~assets/img/components/topbar/option.png" />
-        </div>
-        <div slot="item-find">
+        </div> -->
+        <!-- <div slot="item-find">
           <img src="~assets/img/components/topbar/mic.png" />
-        </div>
-        <div slot="item-mvdetail">
+        </div> -->
+        <!-- <div slot="item-mvdetail">
           <img src="~assets/img/components/topbar/share.png" />
-        </div>
+        </div> -->
       </top-bar-item>
     </top-bar-block>
     <van-popup

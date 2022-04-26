@@ -8,7 +8,7 @@
             <div class="title">{{name}}</div>
             <div class="author">{{author}}</div>
         </div>
-        <div class="operation-block">
+        <!-- <div class="operation-block">
             <div class="operation">
                 <div class="collect">收藏</div>
                 <div class="line"></div>
@@ -16,7 +16,7 @@
                 <div class="line"></div>
                 <div class="share">分享</div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 

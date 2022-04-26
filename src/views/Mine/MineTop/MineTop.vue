@@ -22,9 +22,9 @@
                         <div class="font">等级</div>
                     </div>
                 </div>
-                <div class="font-bottom">
+                <!-- <div class="font-bottom">
                     <van-button>编辑信息</van-button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

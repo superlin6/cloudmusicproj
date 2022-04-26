@@ -28,3 +28,13 @@ export function getLyric(id){
         }
     })
 }
+
+export function toLike(id, like = true) {
+  return request({
+    url: '/like',
+    params: {
+      id,
+      like
+    }
+  })
+}

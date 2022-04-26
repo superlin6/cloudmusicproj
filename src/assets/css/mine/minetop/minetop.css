@@ -33,25 +33,29 @@
 .head-font{
     margin-left: 20px;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 .head-font .font-top{
+  width: 100%;
     display: flex;
     justify-content: space-around;
 }
 .font-top .font{
     font-size: 12px;
-
+    margin-top:4px;
 }
 .font .num{
+  
     text-align: center;
 }
-.font-bottom{
+/* .font-bottom{
     text-align: center;
-    margin-top: 6px;
+    padding-top: 10px;
 }
 .font-bottom .van-button{
     border-radius: 22px;
     font-size: 12px;
     padding: 6px 90px;
     height: 100%;
-}
+} */
