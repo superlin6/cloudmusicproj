@@ -4,7 +4,7 @@ export function request(config) {
   //创建axios实例
   const axios1 = axios.create({
     // baseURL: 'http://localhost:3000',
-    baseURL: 'http://47.107.99.40:3000',
+    baseURL: 'http://106.55.32.44:3000',
     withCredentials: true,
   });
   // 2.1.请求拦截的作用

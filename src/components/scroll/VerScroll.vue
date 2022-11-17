@@ -50,6 +50,10 @@ export default {
             // 忽略竖直方向的滚动
             scrollY: false,
             eventPassthrough: "vertical",
+            momentumLimitDistance: 28,
+            momentumLimitTime: 160,
+            swipeTime: 2000,
+            deceleration: 0.005
           });
         } else {
           // console.log(this.scroll);

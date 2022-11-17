@@ -40,6 +40,15 @@
             changePlayNum(num) {
                 this.playNum = num;
             },
+            loadDataFun(event) {
+                event.target.play();
+            },
+            mvPlayLeave() {
+                if (this.playNum != undefined) {
+                    this.$refs['video' + this.playNum][0].pause();//暂停离开的视频
+                    this.playNum = null;//重置
+                }
+            },
             getData() {//获取mv数据
                 if (this.offset < 30) {//一共30个数据
                     this.loading = true;
@@ -80,15 +89,7 @@
                     this.$set(this.listData[index], 'mvUrl', res.data.url);
                 })
             },
-            loadDataFun(event) {
-                event.target.play();
-            },
-            mvPlayLeave() {
-                if (this.playNum != undefined) {
-                    this.$refs['video' + this.playNum][0].pause();//暂停离开的视频
-                    this.playNum = null;//重置
-                }
-            },
+            
             scrollToEnd() {
                 console.log('上拉加载');
                 this.getData();

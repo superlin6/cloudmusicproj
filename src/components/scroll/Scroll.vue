@@ -86,6 +86,10 @@ export default {
         click: this.click,
         scrollX: this.scrollX,
         scrollY: this.scrollY,
+        momentumLimitDistance: 28,
+        momentumLimitTime: 160,
+        swipeTime: 2000,
+        deceleration: 0.005
       });
       // 是否派发滚动事件
       if (this.listenScroll) {
