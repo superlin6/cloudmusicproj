@@ -26,44 +26,43 @@
 import { Dialog } from 'vant';
 import { cellphoneLogin } from '../../network/Login/login';
 import StarBg from './components/StarBg.vue';
-import axios from 'axios';
 export default {
-  components: { StarBg },
-  name: 'Login',
-  data() {
-    return {
-      account: '',
-      password: '',
-    };
-  },
-  methods: {
-    toLogin() {
-      cellphoneLogin(this.account, this.password).then((res) => {
-        console.log(res);
-        if (res.code == 501 || res.code == 502 || res.code == 509) {
-          Dialog.alert({
-            message: res.msg,
-          }).then(() => {
-            this.password = '';
-          });
-        } else if (res.code == 200) {
-          Dialog.alert({
-            message: '登录成功',
-          }).then(() => {
-            localStorage.setItem('userId', res.account.id); //用户
-            // localStorage.setItem('cookie',res.cookie);
-            this.$router.go(-1);
-            // console.log('router'+this.$router.options.routes)
-            this.$bus.emit('login'); //发送登录信号
-          });
-        } else if (res.code == 400) {
-          Dialog.alert({
-            message: '手机格式错误！',
-          });
-        }
-      });
+    components: { StarBg },
+    name: 'Login',
+    data() {
+        return {
+            account: '',
+            password: ''
+        };
     },
-  },
+    methods: {
+        toLogin() {
+            cellphoneLogin(this.account, this.password).then((res) => {
+                // console.log(res);
+                if (res.code == 501 || res.code == 502 || res.code == 509) {
+                    Dialog.alert({
+                        message: res.msg
+                    }).then(() => {
+                        this.password = '';
+                    });
+                } else if (res.code == 200) {
+                    Dialog.alert({
+                        message: '登录成功'
+                    }).then(() => {
+                        localStorage.setItem('userId', res.account.id); // 用户
+                        // localStorage.setItem('cookie',res.cookie);
+                        this.$router.go(-1);
+                        // console.log('router'+this.$router.options.routes)
+                        this.$bus.emit('login'); // 发送登录信号
+                    });
+                } else if (res.code == 400) {
+                    Dialog.alert({
+                        message: '手机格式错误！'
+                    });
+                }
+            });
+        }
+    }
 };
 </script>
 
